@@ -1,0 +1,46 @@
+:root {
+  --text-color: 16px;
+  --font-size-small: 12px;
+  --font-size-medium: 16px;
+  --font-size-large: 24px;
+  --font-size-xlarge: 36px;
+
+  --color-dark-10: #06090f;
+  --color-dark-20: #1b2838;
+  --color-dark-30: #151b26;
+  --color-dark-40: #a3a3a3;
+  --color-support-01: #2962ff;
+  --color-uccess: #0bb07b;
+  --color-support-03: #ffce52;
+  --color-support-04: #f03d3d;
+
+  -color-blue-gradient: linear-gradient(
+    223.75deg,
+    #00a3ff 4.8%,
+    #0054c6 95.02%
+  );
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--color-dark-10);
+}
+.app {
+  height: calc(100vh - 2rem);
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Mobile
+320 x 568px
+
+Tablet
+768 x 1024px
+
+Desktop
+1024 x 1366px
+
+Desktop HD
+1440 x 1024px */
