@@ -5,6 +5,7 @@
   --font-size-large: 24px;
   --font-size-xlarge: 36px;
 
+  --color-white: #fefbfb;
   --color-dark-10: #06090f;
   --color-dark-20: #1b2838;
   --color-dark-30: #151b26;
@@ -27,12 +28,16 @@
   background-color: var(--color-dark-10);
 }
 .app {
-  height: calc(100vh - 2rem);
+  height: calc(100vh - 5rem);
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
 }
 
+h1,
+h2 {
+  color: var(--color-white);
+}
 /* Mobile
 320 x 568px
 

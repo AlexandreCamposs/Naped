@@ -9,6 +9,7 @@ import Movies from './pages/Movies';
 import Animes from './pages/Animes';
 import Games from './pages/Games';
 import Account from './pages/Account';
+import PageError from './pages/PageError';
 import Footer from './components/Footer';
 
 import styles from './App.module.css';
@@ -28,6 +29,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<RegisterUser />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/error" element={PageError} />
           </Routes>
         </BrowserRouter>
       </div>

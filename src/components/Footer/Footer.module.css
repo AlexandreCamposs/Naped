@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-white);
+  text-align: center;
+  height: 80px;
+}
+.container span {
+  color: var(--color-support-01);
+}

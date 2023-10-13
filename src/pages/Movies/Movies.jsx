@@ -1,9 +1,12 @@
-import React from 'react';
+import Error from '../../assets/error.svg';
+import styles from './Movies.module.css';
 
 const Movies = () => {
   return (
-    <div>
-      <h1>Movies</h1>
+    <div className={styles.container}>
+      <h1>Filmes</h1>
+      <h2>Página em construção</h2>
+      <img src={Error} alt="" />
     </div>
   );
 };

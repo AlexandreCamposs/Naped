@@ -1,9 +1,10 @@
 import React from 'react';
+import PageError from '../PageError';
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <PageError />
     </div>
   );
 };

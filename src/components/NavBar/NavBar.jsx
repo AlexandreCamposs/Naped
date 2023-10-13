@@ -6,10 +6,11 @@ import styles from './NavBar.module.css';
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = () => {
+  const handleStateMenu = () => {
     setIsOpen((state) => !state);
   };
 
+  console.log(isOpen);
   return (
     <header>
       <nav className={styles.container}>
@@ -19,28 +20,40 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className={styles.nav}>
-          <div className={styles.mobile}>
+          <div className={styles.mobile} onClick={handleStateMenu}>
             <BiMenu />
           </div>
-          <ul>
-            <li>
-              <NavLink to="/">Início</NavLink>
-            </li>
-            <li>
-              <NavLink to="/series">Séries</NavLink>
-            </li>
-            <li>
-              <NavLink to="/movies">Filmes</NavLink>
-            </li>
-            <li>
-              <NavLink to="/animes">Animes</NavLink>
-            </li>
-            <li>
-              <NavLink to="games">Jogos</NavLink>
-            </li>
-          </ul>
-          <div className={styles.account}>
-            <NavLink to="/account">Minha conta</NavLink>
+          <div className={`${styles.isMobile} ${isOpen ? styles.isOpen : ''}`}>
+            <ul>
+              <li>
+                <NavLink to="/" onClick={handleStateMenu}>
+                  Início
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/series" onClick={handleStateMenu}>
+                  Séries
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/movies" onClick={handleStateMenu}>
+                  Filmes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/animes" onClick={handleStateMenu}>
+                  Animes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="games" onClick={handleStateMenu}>
+                  Jogos
+                </NavLink>
+              </li>
+            </ul>
+            <div className={styles.account} onClick={handleStateMenu}>
+              <NavLink to="/register">Minha conta</NavLink>
+            </div>
           </div>
         </div>
       </nav>

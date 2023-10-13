@@ -1,9 +1,12 @@
-import React from 'react';
+import styles from './Footer.module.css';
 
 const Footer = () => {
   return (
-    <div>
-      <>Footer</>
+    <div className={styles.container}>
+      <p>
+        Copyright &copy; <span>AlexandreCamposs</span>. Todos os direitos
+        reservados
+      </p>{' '}
     </div>
   );
 };
