@@ -12,16 +12,16 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { loginUser, loading, error } = useAuthentication();
-  // const [signInWithEmailAndPassword, user, loading, error] =
-  //   useSignInWithEmailAndPassword(auth);
+  const { loginUser } = useAuthentication();
 
   const handleSignIn = (e) => {
     e.preventDefault();
 
-    // signInWithEmailAndPassword(email, password);
-  };
+    const user = { email, password };
 
+    loginUser(user);
+    console.log(user);
+  };
   return (
     <div className={styles.container}>
       <span>Naped</span>

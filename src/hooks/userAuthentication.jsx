@@ -1,37 +1,71 @@
+// import {
+//   useCreateUserWithEmailAndPassword,
+//   useSignInWithEmailAndPassword,
+//   updateProfile,
+// } from 'react-firebase-hooks/auth';
 import {
-  useCreateUserWithEmailAndPassword,
-  useSignInWithEmailAndPassword,
-} from 'react-firebase-hooks/auth';
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+  signOut,
+} from 'firebase/auth';
+
 import { auth } from '../firebase/config';
 
 import { useState } from 'react';
 
 export const useAuthentication = () => {
-  const [createUserWithEmailAndPassword, userC, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const registerUser = async (email, password) => {
+  const auth = getAuth();
+
+  const registerUser = async (data) => {
+    setLoading(true);
     try {
-      createUserWithEmailAndPassword(email, password);
-    } catch (error) {}
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
+
+      await updateProfile(user, { displayName: data.displayName });
+
+      console.log(user);
+      setLoading(false);
+
+      return user;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const loginUser = (email, password) => {
+  const loginUser = async (data) => {
+    setLoading(true);
+
     try {
-      signInWithEmailAndPassword(email, password);
-    } catch (error) {}
+      const res = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
+      console.log(res);
+
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const logout = () => {
+    signOut(auth);
   };
 
   return {
     registerUser,
-    user,
-    loading,
-    error,
     loginUser,
-    user,
-    loading,
-    error,
+    logout,
+    auth,
   };
 };

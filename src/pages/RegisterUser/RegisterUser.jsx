@@ -14,17 +14,21 @@ const RegisterUser = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const { registerUser, loading, error } = useAuthentication();
+  const { registerUser } = useAuthentication();
 
-  const handleSignOut = (e) => {
+  const handleSignOut = async (e) => {
     e.preventDefault();
 
-    registerUser(email, password);
-    // console.log(name, email, error);
+    const user = {
+      name,
+      email,
+      password,
+    };
+    // const res = await createUser(user);
+    registerUser(user);
+    console.log(user);
   };
-  if (loading) {
-    return <p>Carregando</p>;
-  }
+
   return (
     <div className={styles.container}>
       <span>Naped</span>
