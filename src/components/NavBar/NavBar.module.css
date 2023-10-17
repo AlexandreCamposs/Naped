@@ -57,6 +57,7 @@ a {
   .container {
     justify-content: space-between;
   }
+  html,
   body {
     overflow-x: hidden;
   }
@@ -80,6 +81,7 @@ a {
     text-align: center;
     z-index: 1;
     border-radius: 5px;
+    overflow-x: hidden;
   }
 
   .isOpen {

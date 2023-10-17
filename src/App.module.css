@@ -1,10 +1,4 @@
 :root {
-  --text-color: 16px;
-  --font-size-small: 12px;
-  --font-size-medium: 16px;
-  --font-size-large: 24px;
-  --font-size-xlarge: 36px;
-
   --color-white: #fefbfb;
   --color-dark-10: #06090f;
   --color-dark-20: #1b2838;
@@ -35,7 +29,8 @@
 }
 
 h1,
-h2 {
+h2,
+p {
   color: var(--color-white);
 }
 /* Mobile
