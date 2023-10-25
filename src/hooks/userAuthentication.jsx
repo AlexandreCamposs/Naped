@@ -1,8 +1,3 @@
-// import {
-//   useCreateUserWithEmailAndPassword,
-//   useSignInWithEmailAndPassword,
-//   updateProfile,
-// } from 'react-firebase-hooks/auth';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -30,14 +25,14 @@ export const useAuthentication = () => {
         data.password,
       );
 
-      await updateProfile(user, { displayName: data.displayName });
+      await updateProfile(user, { displayName: data.name });
 
       console.log(user);
       setLoading(false);
 
       return user;
     } catch (error) {
-      console.log(error);
+      if (error === '') console.log(error);
     }
   };
 
@@ -54,6 +49,18 @@ export const useAuthentication = () => {
 
       setLoading(false);
     } catch (error) {
+      let messageError = '';
+      if (error.message.includes('Password')) {
+        messageError = 'Senha deve ter no mínimo 6 digitos.';
+      } else if (error.message.includes('INVALID_EMAIL')) {
+        messageError = 'Email inválido.';
+      } else if (error.message.includes('EMAIL_EXISTS.')) {
+        messageError = 'Email já cadastrado.';
+      } else {
+        messageError = 'Ocorreu um erro tente mais tarde.';
+      }
+
+      setError(messageError);
       console.log(error);
     }
   };
@@ -67,5 +74,7 @@ export const useAuthentication = () => {
     loginUser,
     logout,
     auth,
+    error,
+    loading,
   };
 };

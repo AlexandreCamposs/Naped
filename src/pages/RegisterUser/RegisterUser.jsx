@@ -13,8 +13,9 @@ const RegisterUser = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const { registerUser } = useAuthentication();
+  const { registerUser, error: newError, loading } = useAuthentication();
 
   const handleSignOut = async (e) => {
     e.preventDefault();
@@ -24,8 +25,17 @@ const RegisterUser = () => {
       email,
       password,
     };
-    // const res = await createUser(user);
-    registerUser(user);
+
+    if (name.trim() === '') {
+      setError('Campo nome obrigatório.');
+    }
+
+    if (password !== confirmPassword) {
+      setError('As senhas precisam ser iguais.');
+      return;
+    }
+
+    await registerUser(user);
     console.log(user);
   };
 

@@ -15,7 +15,7 @@ const NavBar = () => {
     setIsOpen((state) => !state);
   };
 
-  // console.log(isOpen);
+  // if (!isOpen) return null;
   return (
     <header>
       <nav className={styles.container}>

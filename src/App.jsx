@@ -36,28 +36,26 @@ function App() {
   }
   console.log(user);
   return (
-    <>
-      <AuthProvider value={{ user }}>
-        <div className={styles.app}>
-          <BrowserRouter>
-            <NavBar />
-            <Routes>
-              {!user && <Route path="/" element={<Welcome />} />}
-              <Route path="/" element={<Home />} />
-              <Route path="/series" element={<Series />} />
-              <Route path="/movies" element={<Movies />} />
-              <Route path="/animes" element={<Animes />} />
-              <Route path="/games" element={<Games />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<RegisterUser />} />
-              <Route path="/account" element={<Account />} />
-              <Route path="/error" element={PageError} />
-            </Routes>
-          </BrowserRouter>
-        </div>
-        <Footer />
-      </AuthProvider>
-    </>
+    <AuthProvider value={{ user }}>
+      <div className={styles.app}>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            {!user && <Route path="/" element={<Welcome />} />}
+            <Route path="/" element={<Home />} />
+            <Route path="/series" element={<Series />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/animes" element={<Animes />} />
+            <Route path="/games" element={<Games />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<RegisterUser />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/error" element={PageError} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+      <Footer />
+    </AuthProvider>
   );
 }
 
