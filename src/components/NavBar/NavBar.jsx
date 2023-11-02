@@ -4,12 +4,12 @@ import { useAuthValue } from '../../context/AuthContext';
 import { BiMenu, BiLogoMagento } from 'react-icons/bi';
 import { useAuthentication } from '../../hooks/userAuthentication';
 import styles from './NavBar.module.css';
+
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logout } = useAuthentication();
 
   const { user } = useAuthValue();
-  console.log(user);
 
   const handleStateMenu = () => {
     setIsOpen((state) => !state);
@@ -58,11 +58,7 @@ const NavBar = () => {
                 </li>
               </ul>
             )}
-            {!user ? (
-              <div className={styles.account} onClick={handleStateMenu}>
-                <NavLink to="/register">Criar conta</NavLink>
-              </div>
-            ) : (
+            {user && (
               <div className={styles.account} onClick={handleStateMenu}>
                 <NavLink to="/" onClick={logout}>
                   Sair

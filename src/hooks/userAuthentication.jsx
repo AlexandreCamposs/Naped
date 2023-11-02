@@ -1,5 +1,4 @@
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
@@ -14,7 +13,9 @@ export const useAuthentication = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const auth = getAuth();
+  const clearError = () => {
+    setError('');
+  };
 
   const registerUser = async (data) => {
     setLoading(true);
@@ -30,9 +31,24 @@ export const useAuthentication = () => {
       console.log(user);
       setLoading(false);
 
+      setError('');
+
       return user;
     } catch (error) {
-      if (error === '') console.log(error);
+      console.log(error);
+
+      let messageError = '';
+      if (error.message.includes('auth/missing-password')) {
+        messageError = 'Senha deve ter no mínimo 6 digitos.';
+      } else if (error.message.includes('auth/invalid-email')) {
+        messageError = 'Email inválido.';
+      } else if (error.message.includes('auth/email-already-in-use')) {
+        messageError = 'Email já cadastrado.';
+      } else {
+        messageError = 'Ocorreu um erro tente mais tarde.';
+      }
+
+      setError(messageError);
     }
   };
 
@@ -45,25 +61,28 @@ export const useAuthentication = () => {
         data.email,
         data.password,
       );
-      console.log(res);
 
       setLoading(false);
+
+      return res;
     } catch (error) {
+      console.log(error);
+
       let messageError = '';
-      if (error.message.includes('Password')) {
-        messageError = 'Senha deve ter no mínimo 6 digitos.';
-      } else if (error.message.includes('INVALID_EMAIL')) {
-        messageError = 'Email inválido.';
-      } else if (error.message.includes('EMAIL_EXISTS.')) {
-        messageError = 'Email já cadastrado.';
+
+      if (error.message.includes('auth/invalid-email')) {
+        messageError = 'E-mail inválido';
+      } else if (error.message.includes('auth/missing-password')) {
+        messageError = 'Senha inválida.';
       } else {
-        messageError = 'Ocorreu um erro tente mais tarde.';
+        messageError = 'Tente mais tarde.';
       }
 
       setError(messageError);
-      console.log(error);
     }
   };
+
+  console.log(error);
 
   const logout = () => {
     signOut(auth);
@@ -76,5 +95,6 @@ export const useAuthentication = () => {
     auth,
     error,
     loading,
+    clearError,
   };
 };

@@ -4,7 +4,6 @@ import { AuthProvider } from './context/AuthContext';
 import { useAuthentication } from './hooks/userAuthentication';
 import { onAuthStateChanged } from 'firebase/auth';
 
-import Welcome from './pages/Welcome/Welcome';
 import RegisterUser from './pages/RegisterUser';
 import Login from './pages/Login';
 import NavBar from './components/NavBar';
@@ -22,7 +21,6 @@ import styles from './App.module.css';
 function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication(); //auth é a autenticação
-
   const loadingUser = user === undefined;
 
   useEffect(() => {
@@ -34,14 +32,14 @@ function App() {
   if (loadingUser) {
     return <p>Carregando...</p>;
   }
-  console.log(user);
+
   return (
     <AuthProvider value={{ user }}>
       <div className={styles.app}>
         <BrowserRouter>
           <NavBar />
           <Routes>
-            {!user && <Route path="/" element={<Welcome />} />}
+            {!user && <Route path="/" element={<RegisterUser />} />}
             <Route path="/" element={<Home />} />
             <Route path="/series" element={<Series />} />
             <Route path="/movies" element={<Movies />} />

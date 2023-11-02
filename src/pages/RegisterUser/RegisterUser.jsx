@@ -1,10 +1,11 @@
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuthentication } from '../../hooks/userAuthentication';
+import { useAuthValue } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
 import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
-
-import { useAuthentication } from '../../hooks/userAuthentication';
 
 import styles from './Register.module.css';
 
@@ -15,9 +16,17 @@ const RegisterUser = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  const { registerUser, error: newError, loading } = useAuthentication();
+  const navigate = useNavigate();
+  const { user } = useAuthValue();
 
-  const handleSignOut = async (e) => {
+  const {
+    registerUser,
+    error: newError,
+    loading,
+    clearError,
+  } = useAuthentication();
+
+  const handleSignUp = async (e) => {
     e.preventDefault();
 
     const user = {
@@ -28,6 +37,12 @@ const RegisterUser = () => {
 
     if (name.trim() === '') {
       setError('Campo nome obrigatório.');
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError('Email inválido.');
+      return;
     }
 
     if (password !== confirmPassword) {
@@ -36,14 +51,31 @@ const RegisterUser = () => {
     }
 
     await registerUser(user);
-    console.log(user);
   };
 
+  useEffect(() => {
+    if (newError) {
+      setError(newError);
+      clearError();
+    }
+  }, [newError]);
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError('');
+      }, 2000);
+    }
+  }, [error]);
+
+  if (user) {
+    navigate('/');
+  }
   return (
     <div className={styles.container}>
       <span>Naped</span>
       <h1>Faça uma conta</h1>
-      <form className={styles.form} onSubmit={handleSignOut}>
+      <form className={styles.form} onSubmit={handleSignUp}>
         <label>
           <AiOutlineUser />
           <input
@@ -84,9 +116,10 @@ const RegisterUser = () => {
             value={confirmPassword}
           />
         </label>
-        <input type="submit" value="Criar conta" />
+        <input type="submit" value="Sign up" />
       </form>
       <Link to="/login">Já tenho uma conta</Link>
+      {error && <p>{error}</p>}
     </div>
   );
 };
