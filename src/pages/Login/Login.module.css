@@ -1,4 +1,4 @@
-.container {
+/* .container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,34 +10,34 @@
   color: var(--color-support-01);
   font-size: 2rem;
   font-weight: bold;
-}
+} */
 
-.container h1 {
+/* .container h1 {
   font-size: 3rem;
   color: var(--color-white);
-}
-
+} */
+/* 
 .form {
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
   max-width: 400px;
   width: 100%;
-}
+} */
 
-.form label {
+/* .form label {
   position: relative;
-}
+} */
 
-.form label svg {
+/* .form label svg {
   position: absolute;
   top: 40%;
   transform: translateY(-50%);
   left: 10px;
   color: var(--color-support-01);
   background: transparent;
-}
-
+} */
+/* 
 .form input {
   color: var(--color-white);
   border: none;
@@ -50,17 +50,17 @@
 
 .form input::placeholder {
   color: var(--color-white);
-}
+} */
 
-form input[type='submit'] {
+/* form input[type='submit'] {
   color: var(--color-white);
   border: none;
   background-color: var(--color-support-01);
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
-}
-
+} */
+/* 
 .container > a {
   color: #fff;
 }
@@ -77,4 +77,4 @@ form input[type='submit'] {
   .form {
     padding: 0 1rem;
   }
-}
+} */

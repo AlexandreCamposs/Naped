@@ -40,11 +40,23 @@ function App() {
           <NavBar />
           <Routes>
             {!user && <Route path="/" element={<RegisterUser />} />}
-            <Route path="/" element={<Home />} />
-            <Route path="/series" element={<Series />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/animes" element={<Animes />} />
-            <Route path="/games" element={<Games />} />
+            <Route path="/" element={!user ? <RegisterUser /> : <Home />} />
+            <Route
+              path="/series"
+              element={!user ? <RegisterUser /> : <Series />}
+            />
+            <Route
+              path="/movies"
+              element={!user ? <RegisterUser /> : <Movies />}
+            />
+            <Route
+              path="/animes"
+              element={!user ? <RegisterUser /> : <Animes />}
+            />
+            <Route
+              path="/games"
+              element={!user ? <RegisterUser /> : <Games />}
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<RegisterUser />} />
             <Route path="/account" element={<Account />} />

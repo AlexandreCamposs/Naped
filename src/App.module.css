@@ -5,7 +5,7 @@
   --color-dark-30: #151b26;
   --color-dark-40: #a3a3a3;
   --color-support-01: #2962ff;
-  --color-uccess: #0bb07b;
+  --color-success: #0bb07b;
   --color-support-03: #ffce52;
   --color-support-04: #f03d3d;
 
@@ -20,9 +20,10 @@
   padding: 0;
   box-sizing: border-box;
   background-color: var(--color-dark-10);
+  color: #fff;
 }
 .app {
-  height: calc(100vh - 5rem);
+  min-height: calc(100vh - 5rem);
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;

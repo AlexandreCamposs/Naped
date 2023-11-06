@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { AiOutlineUser } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
 
-import styles from './Login.module.css';
 import { useAuthValue } from '../../context/AuthContext';
 
 const Login = () => {
@@ -46,13 +45,17 @@ const Login = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <span>Naped</span>
-      <h1>Entrar na conta</h1>
-      <form className={styles.form} onSubmit={handleSignIn}>
-        <label>
-          <AiOutlineUser />
+    <div className="containerDefault h-heightDefault px-4">
+      <span className="text-3xl text-support01 font-bold ">Naped</span>
+      <h1 className="sm:text-5xl text-4xl">Entrar na conta</h1>
+      <form
+        className="flex flex-col mt-8 max-w-sm w-full"
+        onSubmit={handleSignIn}
+      >
+        <label className="relative">
+          <AiOutlineUser className="absolute top-2/4 translate-y-[-85%] left-2 bg-transparent  text-support01 " />
           <input
+            className="shadow appearance-none  rounded w-full py-2 px-8 mb-3 text-gray-700   focus:outline-none focus:text-white bg-dark20 "
             type="text"
             name="email"
             placeholder="Digite seu usuário"
@@ -60,20 +63,27 @@ const Login = () => {
             value={email}
           />
         </label>
-        <label>
-          <RiLockPasswordLine />
+        <label className="relative">
+          <RiLockPasswordLine className="absolute top-2/4 translate-y-[-85%] left-2 bg-transparent  text-support01 " />
           <input
+            className="shadow appearance-none  rounded w-full py-2 px-8 mb-3 text-gray-700   focus:outline-none focus:text-white bg-dark20 "
             type="password"
             name="password"
-            placeholder="Digite uma senha"
+            placeholder="Digite sua senha"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
         </label>
-        <input type="submit" value="Log in" />
+        <input
+          type="submit"
+          value="Log in"
+          className="text-white border-none bg-support01  font-bold rounded cursor-pointer py-2 mb-2"
+        />
       </form>
-      <Link to="/register">Criar uma conta</Link>
-      {error && <p>{error}</p>}
+      <Link to="/register" className="text-white">
+        Criar uma conta
+      </Link>
+      {error && <p className="text-error">{error}</p>}
     </div>
   );
 };
