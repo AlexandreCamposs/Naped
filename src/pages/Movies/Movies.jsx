@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useSearchMovies } from '../../hooks/userSearchMovies';
-import { Link } from 'react-router-dom';
+
+import DataContent from '../../components/DataContent';
+import Pagination from '../../components/Pagination/Pagination';
+
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const Movies = () => {
   const [data, setData] = useState('');
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage] = useState(6);
+
   const {
     data: dataMovies,
     searchMovies,
@@ -16,44 +23,40 @@ const Movies = () => {
   }, []);
 
   useEffect(() => {
-    if (loadingMovies) {
-      setLoading(loadingMovies);
-    } else {
-      setLoading(false);
-    }
+    setLoading(loadingMovies);
 
     if (dataMovies) {
       setData(dataMovies);
     }
   }, [dataMovies, loadingMovies]);
 
-  console.log(data);
-  console.log(loading);
+  // console.log(data);
+  // console.log(loading);
+
+  const indexOfLastData = currentPage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentDatas = data.slice(indexOfFirstData, indexOfLastData);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="">
-      <div className="flex justify-center">
+    <div>
+      <div className="relative text-center">
+        <AiOutlineSearch className="absolute inline-block top-1/2   ml-8 bg-transparent text-2xl" />
         <input
           type="text"
-          placeholder="Quer ajuda na procura? Pesquise aqui..."
-          className="mx-4 mt-4 w-full sm:w-1/2 p-2 rounded focus:text-white bg-dark20 focus:outline-none
-        "
+          placeholder="Pesquise aqui..."
+          className="mx-4 mt-4 w-4/5 sm:w-1/2 pl-12 py-4 rounded focus:text-white bg-dark20 focus:outline-none
+          "
         />
       </div>
-      <div className="flex justify-center flex-wrap p-4 ">
-        {data &&
-          data.map((data, key) => (
-            <div className=" w-full sm:w-1/3 lg:w-1/4   m-4 border rounded p-4">
-              <img
-                src={'https://image.tmdb.org/t/p/w500/' + data.poster_path}
-                alt=""
-              />
-              <h2>{data.original_title}</h2>
-
-              <p>{data.overview}</p>
-              <Link>Ver mais</Link>
-            </div>
-          ))}
+      <div className="flex flex-col items-center    ">
+        <DataContent data={currentDatas} loading={loading} />
+        <Pagination
+          dataPerPage={dataPerPage}
+          totalData={data.length}
+          paginate={paginate}
+        />
       </div>
     </div>
   );
