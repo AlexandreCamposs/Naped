@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import IconError from '../../assets/error.svg';
-import styles from './PageError.module.css';
+import IconError from "../../assets/error.svg";
+import styles from "./PageError.module.css";
 
 const PageError = () => {
   return (

@@ -1,22 +1,23 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import { useAuthentication } from './hooks/userAuthentication';
-import { onAuthStateChanged } from 'firebase/auth';
+import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import { useAuthentication } from "./hooks/userAuthentication";
+import { onAuthStateChanged } from "firebase/auth";
 
-import RegisterUser from './pages/RegisterUser';
-import Login from './pages/Login';
-import NavBar from './components/NavBar';
-import Home from './pages/Home';
-import Series from './pages/Series';
-import Movies from './pages/Movies';
-import Animes from './pages/Animes';
-import Games from './pages/Games';
-import Account from './pages/Account';
-import PageError from './pages/PageError';
-import Footer from './components/Footer';
+import RegisterUser from "./pages/RegisterUser";
+import Login from "./pages/Login";
+import NavBar from "./components/NavBar";
+import Home from "./pages/Home";
+import Series from "./pages/Series";
+import Movies from "./pages/Movies";
+import Animes from "./pages/Animes";
+import Games from "./pages/Games";
+import MovieDetails from './components/MovieDetails'
+import Account from "./pages/Account";
+import PageError from "./pages/PageError";
+import Footer from "./components/Footer";
 
-import styles from './App.module.css';
+import styles from "./App.module.css";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -61,6 +62,7 @@ function App() {
             <Route path="/register" element={<RegisterUser />} />
             <Route path="/account" element={<Account />} />
             <Route path="/error" element={PageError} />
+            <Route path="/movie-details/:id" element={<MovieDetails />} />
           </Routes>
         </BrowserRouter>
       </div>

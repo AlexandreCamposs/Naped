@@ -1,4 +1,4 @@
-import styles from './Footer.module.css';
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
@@ -6,7 +6,7 @@ const Footer = () => {
       <p>
         Copyright &copy; <span>AlexandreCamposs</span>. Todos os direitos
         reservados
-      </p>{' '}
+      </p>{" "}
     </div>
   );
 };

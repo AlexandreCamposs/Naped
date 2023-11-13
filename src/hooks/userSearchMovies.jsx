@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { token } from '../util/data';
+import { useState } from "react";
+import { token } from "../util/data";
 
 export const useSearchMovies = () => {
-  const [data, setData] = useState('');
+  const [data, setData] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const searchMovies = async () => {
     setLoading(true);
     try {
       const res = await fetch(
-        'https://api.themoviedb.org/3/movie/top_rated?language=pt-BR&page=1',
+        "https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1",
         token,
       );
 

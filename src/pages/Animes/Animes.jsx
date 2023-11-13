@@ -1,6 +1,6 @@
-import Error from '../../assets/error.svg';
+import Error from "../../assets/error.svg";
 
-import styles from './Animes.module.css';
+import styles from "./Animes.module.css";
 const Animes = () => {
   return (
     <div className={styles.container}>

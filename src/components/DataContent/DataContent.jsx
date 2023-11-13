@@ -1,40 +1,56 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import MovieDetails from '../MovieDetails';
 
 const DataContent = ({ data, loading }) => {
-  console.log(data);
-  if (loading) {
-    return <h1>Carregando</h1>;
-  }
+	const [openModal, setOpenModal] = useState(false);
+	const [movie, setMovie] = useState(null);
 
-  return (
-    <div className="flex justify-center  flex-wrap p-4 ">
-      {data &&
-        data.map((data, i) => (
-          <div
-            className="flex flex-col justify-between   sm:w-1/3 lg:w-1/4   m-4 border rounded p-4"
-            key={i}
-          >
-            <div>
-              <img
-                src={'https://image.tmdb.org/t/p/w500/' + data.poster_path}
-                alt=""
-              />
-              <h2 className="text-center my-4 text-2xl md:text-3xl ">
-                {data.original_title}
-              </h2>
+	function handleModal(data) {
+		setMovie(data);
+		setOpenModal((prevState) => !prevState);
+		console.log('clicou');
+	}
 
-              <p className=" line-clamp-4 text-ellipsis mb-4">
-                {data.overview}
-              </p>
-            </div>
-            <Link className="	w-max mx-auto bg-white text-dark10 px-8 py-2 rounded font-bold">
-              Ver mais
-            </Link>
-          </div>
-        ))}
-    </div>
-  );
+	openModal
+		? (document.body.style.overflow = 'hidden')
+		: (document.body.style.overflow = 'auto');
+
+	return (
+		<div className="flex flex-wrap justify-center p-4">
+			{data &&
+				data.map((data, i) => (
+					<div
+						className="m-4 flex flex-col justify-between rounded border p-4 sm:w-1/3 lg:w-1/5"
+						key={i}
+					>
+						<div>
+							<img
+								src={'https://image.tmdb.org/t/p/w500/' + data.poster_path}
+								alt=""
+							/>
+							<h2 className="my-4  text-center text-2xl md:text-3xl ">
+								{data.original_title}
+							</h2>
+							<p className=" mb-4 line-clamp-4 text-ellipsis">
+								{data.overview}
+							</p>
+						</div>
+						<button
+							className="flex text-support01"
+							onClick={() => handleModal(data)}
+						>
+							Ler mais
+						</button>
+					</div>
+				))}
+			{openModal && (
+				<MovieDetails
+					data={movie}
+					setOpenModal={() => setOpenModal(!openModal)}
+				/>
+			)}
+		</div>
+	);
 };
 
 export default DataContent;

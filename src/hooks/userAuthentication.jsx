@@ -3,18 +3,18 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
   signOut,
-} from 'firebase/auth';
+} from "firebase/auth";
 
-import { auth } from '../firebase/config';
+import { auth } from "../firebase/config";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export const useAuthentication = () => {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const clearError = () => {
-    setError('');
+    setError("");
   };
 
   const registerUser = async (data) => {
@@ -31,21 +31,21 @@ export const useAuthentication = () => {
       console.log(user);
       setLoading(false);
 
-      setError('');
+      setError("");
 
       return user;
     } catch (error) {
       console.log(error);
 
-      let messageError = '';
-      if (error.message.includes('auth/missing-password')) {
-        messageError = 'Senha deve ter no mínimo 6 digitos.';
-      } else if (error.message.includes('auth/invalid-email')) {
-        messageError = 'Email inválido.';
-      } else if (error.message.includes('auth/email-already-in-use')) {
-        messageError = 'Email já cadastrado.';
+      let messageError = "";
+      if (error.message.includes("auth/missing-password")) {
+        messageError = "Senha deve ter no mínimo 6 digitos.";
+      } else if (error.message.includes("auth/invalid-email")) {
+        messageError = "Email inválido.";
+      } else if (error.message.includes("auth/email-already-in-use")) {
+        messageError = "Email já cadastrado.";
       } else {
-        messageError = 'Ocorreu um erro tente mais tarde.';
+        messageError = "Ocorreu um erro tente mais tarde.";
       }
 
       setError(messageError);
@@ -68,14 +68,14 @@ export const useAuthentication = () => {
     } catch (error) {
       console.log(error);
 
-      let messageError = '';
+      let messageError = "";
 
-      if (error.message.includes('auth/invalid-email')) {
-        messageError = 'E-mail inválido';
-      } else if (error.message.includes('auth/missing-password')) {
-        messageError = 'Senha inválida.';
+      if (error.message.includes("auth/invalid-email")) {
+        messageError = "E-mail inválido";
+      } else if (error.message.includes("auth/missing-password")) {
+        messageError = "Senha inválida.";
       } else {
-        messageError = 'Tente mais tarde.';
+        messageError = "Tente mais tarde.";
       }
 
       setError(messageError);

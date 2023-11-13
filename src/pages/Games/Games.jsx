@@ -1,5 +1,5 @@
-import Error from '../../assets/error.svg';
-import styles from './Games.module.css';
+import Error from "../../assets/error.svg";
+import styles from "./Games.module.css";
 
 const Games = () => {
   return (

@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .containerDefault {
-  @apply flex flex-col justify-center items-center;
+  @apply flex flex-col items-center justify-center;
 }
