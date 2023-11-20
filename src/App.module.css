@@ -15,13 +15,14 @@
 		#0054c6 95.02%
 	);
 }
-* {
+.app {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	background-color: var(--color-dark-10);
 	color: #fff;
 }
+
 .app {
 	min-height: calc(100vh - 5rem);
 	max-width: 1440px;

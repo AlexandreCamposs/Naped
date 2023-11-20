@@ -1,32 +1,33 @@
 import { useState } from 'react';
 import { token } from '../util/data';
 
-export const useSearchSeries = () => {
+export const useSearchMovies = () => {
 	const [data, setData] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 	const [currentPage, setCurrentPage] = useState(1);
 
-	const searchSeries = async () => {
+	const searchMovies = async () => {
 		setLoading(true);
-		const res = await fetch(
-			`https://api.themoviedb.org/3/tv/top_rated?language=pt-BR&page=${currentPage}`,
-			token,
-		);
-		const { results } = await res.json();
-		setData(results);
 		try {
+			const res = await fetch(
+				`https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=${currentPage}`,
+				token,
+			);
+
+			const { results } = await res.json();
+			setData(results);
 		} catch (error) {
 			console.log(error);
 		}
 		setLoading(false);
 	};
+
 	return {
 		data,
+		searchMovies,
 		loading,
-		error,
-		searchSeries,
-		setCurrentPage,
 		currentPage,
+		setCurrentPage,
 	};
 };

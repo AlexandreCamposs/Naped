@@ -1,84 +1,84 @@
 .container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 80px;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid var(--color-dark-30);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 80px;
+	padding: 1rem 2rem;
+	border-bottom: 1px solid var(--color-dark-30);
 }
 
 .logo a,
 .mobile svg {
-  display: flex;
-  align-items: center;
-  font-size: 2rem;
-  color: var(--color-white);
+	display: flex;
+	align-items: center;
+	font-size: 2rem;
+	color: var(--color-white);
 }
 .isMobile {
-  display: flex;
+	display: flex;
 }
 .nav {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+	display: flex;
+	align-items: center;
+	gap: 2rem;
 }
 
 .nav ul {
-  display: flex;
+	display: flex;
 }
 
 .nav ul li {
-  /* color: aliceblue; */
-  padding: 0.5rem 0.8rem;
-  list-style: none;
+	/* color: aliceblue; */
+	padding: 0.5rem 0.8rem;
+	list-style: none;
 }
 
 a {
-  text-decoration: none;
-  background: transparent;
+	text-decoration: none;
+	background: transparent;
 }
 .nav ul li a,
 .account a {
-  color: var(--color-white);
-  font-size: 1.2rem;
+	color: var(--color-white);
+	font-size: 1.2rem;
 }
 .account {
-  border: none;
-  border-radius: 5px;
-  background-color: var(--color-support-01);
-  padding: 0.5rem 0.8rem;
+	border: none;
+	border-radius: 5px;
+	background-color: var(--color-support-01);
+	padding: 0.5rem 0.8rem;
 }
 
 .mobile {
-  display: none;
+	display: none;
 }
 
 @media (max-width: 420px) {
-  .container {
-    justify-content: space-between;
-  }
-  html,
-  .mobile {
-    display: block;
-  }
-  nav ul {
-    flex-direction: column;
-    width: 50vw;
-    transition: transform 1s ease-in;
-    text-align: center;
-  }
-  .isMobile {
-    position: absolute;
-    flex-direction: column;
-    top: 8vh;
-    right: 0;
-    width: 50vw;
-    text-align: center;
-    z-index: 1;
-    border-radius: 5px;
-  }
+	.container {
+		justify-content: space-between;
+	}
+	html,
+	.mobile {
+		display: block;
+	}
+	nav ul {
+		flex-direction: column;
+		width: 50vw;
+		transition: transform 1s ease-in;
+		text-align: center;
+	}
+	.isMobile {
+		position: absolute;
+		flex-direction: column;
+		top: 8vh;
+		right: 0;
+		width: 50vw;
+		text-align: center;
+		z-index: 1;
+		border-radius: 5px;
+	}
 
-  .isOpen {
-    display: none;
-  }
+	.isOpen {
+		display: none;
+	}
 }

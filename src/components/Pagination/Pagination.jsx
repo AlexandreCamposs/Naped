@@ -1,33 +1,36 @@
-import React from 'react';
+import { FcNext, FcPrevious } from 'react-icons/fc';
 
-const Pagination = ({ dataPerPage, totalData, paginate }) => {
-	const pageNumber = [];
-	// console.log(pageNumber);
+const Pagination = ({ paginate }) => {
+	const handleNext = () => {
+		paginate((prevState) => prevState + 1);
+		topScreen();
+	};
 
-	for (let i = 1; i <= Math.ceil(totalData / dataPerPage); i++) {
-		pageNumber.push(i);
-	}
-	// console.log(pageNumber);
-	// console.log(dataPerPage);
-	// console.log(totalData);
-	// console.log(paginate);
+	const handlePrevious = () => {
+		paginate((prevState) => {
+			if (prevState === 1) {
+				return prevState;
+			} else {
+				return prevState - 1;
+			}
+		});
+		topScreen();
+	};
+
+	const topScreen = () => {
+		window.scroll({ top: 0, behavior: 'smooth' });
+	};
 	return (
-		<nav>
-			<ul className="flex justify-center">
-				{pageNumber.map((number) => (
-					<li
-						key={number}
-						className="hover:bg-gray-700mb-4 cursor-pointer  rounded px-4 py-2"
-						onClick={(e) => {
-							paginate(number);
-							e.preventDefault();
-						}}
-					>
-						{number}
-					</li>
-				))}
+		<div className="bg-black">
+			<ul className="flex justify-center p-4">
+				<li onClick={handlePrevious}>
+					<FcPrevious className="cursor-pointer rounded text-3xl hover:bg-dark40" />
+				</li>
+				<li onClick={handleNext}>
+					<FcNext className="cursor-pointer rounded text-3xl hover:bg-dark40" />
+				</li>
 			</ul>
-		</nav>
+		</div>
 	);
 };
 

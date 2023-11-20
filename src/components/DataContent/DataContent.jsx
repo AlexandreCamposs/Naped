@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import MovieDetails from '../MovieDetails';
+import { useLocation } from 'react-router-dom';
 
 const DataContent = ({ data, loading }) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [movie, setMovie] = useState(null);
 
+	const location = useLocation();
+	const searchParams = location.pathname;
+	const query = searchParams.split('=')[1];
+
 	function handleModal(data) {
 		setMovie(data);
-		setOpenModal((prevState) => !prevState);
-		console.log('clicou');
+		setOpenModal(!openModal);
 	}
 
 	openModal
@@ -16,7 +20,7 @@ const DataContent = ({ data, loading }) => {
 		: (document.body.style.overflow = 'auto');
 
 	return (
-		<div className="flex flex-wrap justify-center p-4">
+		<div className="flex flex-wrap justify-center bg-black p-4">
 			{data &&
 				data.map((data, i) => (
 					<div
@@ -28,12 +32,10 @@ const DataContent = ({ data, loading }) => {
 								src={'https://image.tmdb.org/t/p/w500/' + data.poster_path}
 								alt=""
 							/>
-							<h2 className="my-4  text-center text-2xl md:text-3xl ">
+							<h2 className="my-4 line-clamp-2 text-ellipsis text-center text-2xl md:text-3xl ">
 								{data.original_title}
 							</h2>
-							<p className=" mb-4 line-clamp-4 text-ellipsis">
-								{data.overview}
-							</p>
+							<p className=" mb-4 line-clamp-4">{data.overview}</p>
 						</div>
 						<button
 							className="flex text-support01"
@@ -46,6 +48,7 @@ const DataContent = ({ data, loading }) => {
 			{openModal && (
 				<MovieDetails
 					data={movie}
+					query={query}
 					setOpenModal={() => setOpenModal(!openModal)}
 				/>
 			)}
