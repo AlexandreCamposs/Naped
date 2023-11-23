@@ -14,14 +14,16 @@ const Pagination = ({ paginate }) => {
 				return prevState - 1;
 			}
 		});
+
 		topScreen();
 	};
 
 	const topScreen = () => {
 		window.scroll({ top: 0, behavior: 'smooth' });
 	};
+
 	return (
-		<div className="bg-black">
+		<div className="bg-dark30">
 			<ul className="flex justify-center p-4">
 				<li onClick={handlePrevious}>
 					<FcPrevious className="cursor-pointer rounded text-3xl hover:bg-dark40" />

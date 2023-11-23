@@ -2,7 +2,7 @@ import { useState } from 'react';
 import MovieDetails from '../MovieDetails';
 import { useLocation } from 'react-router-dom';
 
-const DataContent = ({ data, loading }) => {
+const DataContent = ({ data }) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [movie, setMovie] = useState(null);
 
@@ -20,7 +20,7 @@ const DataContent = ({ data, loading }) => {
 		: (document.body.style.overflow = 'auto');
 
 	return (
-		<div className="flex flex-wrap justify-center bg-black p-4">
+		<div className="flex flex-wrap justify-center bg-dark30 px-4">
 			{data &&
 				data.map((data, i) => (
 					<div
@@ -33,12 +33,12 @@ const DataContent = ({ data, loading }) => {
 								alt=""
 							/>
 							<h2 className="my-4 line-clamp-2 text-ellipsis text-center text-2xl md:text-3xl ">
-								{data.original_title}
+								{data.name || data.title}
 							</h2>
 							<p className=" mb-4 line-clamp-4">{data.overview}</p>
 						</div>
 						<button
-							className="flex text-support01"
+							className="flex text-support01 hover:text-dark40"
 							onClick={() => handleModal(data)}
 						>
 							Ler mais

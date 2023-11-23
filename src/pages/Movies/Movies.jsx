@@ -29,20 +29,23 @@ const Movies = () => {
 			setData(dataMovies);
 		}
 	}, [dataMovies, loadingMovies]);
-	// console.log(dataMovies);
 
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	if (loading) {
-		return <p>Loading Filmes</p>;
+		return (
+			<h1 className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] text-4xl">
+				Loading <span className="text-support01">Filmes</span>...
+			</h1>
+		);
 	}
 	return (
 		<div>
-			<h1 className=" my-6 text-center sm:text-3xl">
+			<h1 className="my-6 text-center sm:text-3xl">
 				Bem-vindo à página de <span className="text-support01">filmes</span>.
 			</h1>
 			<div>
-				<DataContent data={data} loading={loading} />
+				<DataContent data={data} />
 				<Pagination paginate={paginate} />
 			</div>
 		</div>

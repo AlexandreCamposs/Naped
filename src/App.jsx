@@ -10,18 +10,12 @@ import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Series from './pages/Series';
 import Movies from './pages/Movies';
-import Animes from './pages/Animes';
-import Games from './pages/Games';
 import MovieDetails from './components/MovieDetails';
-import Account from './pages/Account';
-import PageError from './pages/PageError';
 import Footer from './components/Footer';
-
-import styles from './App.module.css';
 
 function App() {
 	const [user, setUser] = useState(undefined);
-	const { auth } = useAuthentication(); //auth é a autenticação
+	const { auth } = useAuthentication();
 	const loadingUser = user === undefined;
 
 	useEffect(() => {
@@ -31,12 +25,16 @@ function App() {
 	}, [auth]);
 
 	if (loadingUser) {
-		return <p>Carregando...</p>;
+		return (
+			<h1 className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] text-4xl ">
+				Loading <span className="text-support01">site</span> ...
+			</h1>
+		);
 	}
 
 	return (
 		<AuthProvider value={{ user }}>
-			<div className={styles.app}>
+			<div className="mx-auto min-h-screen w-full max-w-7xl bg-dark30">
 				<BrowserRouter>
 					<NavBar />
 					<Routes>
@@ -50,19 +48,9 @@ function App() {
 							path="/page=movies"
 							element={!user ? <RegisterUser /> : <Movies />}
 						/>
-						<Route
-							path="/page=animes"
-							element={!user ? <RegisterUser /> : <Animes />}
-						/>
-						<Route
-							path="/page=games"
-							element={!user ? <RegisterUser /> : <Games />}
-						/>
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<RegisterUser />} />
-						<Route path="/account" element={<Account />} />
-						<Route path="/error" element={PageError} />
-						<Route path="/movie-details/:id" element={<MovieDetails />} />
+						<Route path="/search" element={<Home />} />
 					</Routes>
 				</BrowserRouter>
 			</div>

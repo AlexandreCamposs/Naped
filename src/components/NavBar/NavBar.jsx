@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuthValue } from '../../context/AuthContext';
-import { BiMenu, BiLogoMagento } from 'react-icons/bi';
 import { useAuthentication } from '../../hooks/userAuthentication';
-import styles from './NavBar.module.css';
+import { BiMenu, BiLogoMagento } from 'react-icons/bi';
 
 const NavBar = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -12,57 +11,55 @@ const NavBar = () => {
 	const { user } = useAuthValue();
 
 	const handleStateMenu = () => {
-		setIsOpen((state) => !state);
+		setIsOpen(!isOpen);
 	};
 
-	// if (!isOpen) return null;
 	return (
-		<header>
-			<nav className={styles.container}>
-				<div className={styles.logo}>
+		<header className="bg-dark30">
+			<nav className="flex h-20 items-center justify-around border-b-2 border-dark40 max:justify-between max:px-8 ">
+				<div className="text-3xl text-white">
 					<NavLink to="/">
 						<BiLogoMagento />
 					</NavLink>
 				</div>
-				<div className={styles.nav}>
-					<div className={styles.mobile} onClick={handleStateMenu}>
-						<BiMenu />
+				<div className="flex items-center">
+					<div className="sm:hidden" onClick={handleStateMenu}>
+						<BiMenu className="text-3xl text-white" />
 					</div>
-					<div className={`${styles.isMobile} ${isOpen ? styles.isOpen : ''}`}>
-						<ul>
-							<li>
+					<div
+						className={`flex ${
+							isOpen
+								? 'max:absolute max:right-0 max:top-[8vh] max:w-1/2 max:flex-col max:rounded-md max:text-center'
+								: 'max:hidden'
+						}`}
+					>
+						<ul className="z-10 flex sm:text-2xl max:flex-col max:bg-dark30">
+							<li className="px-4 py-2">
 								<NavLink to="/" onClick={handleStateMenu}>
 									Início
 								</NavLink>
 							</li>
-							<li>
+							<li className="px-4 py-2">
 								<NavLink to="/page=series" onClick={handleStateMenu}>
 									Séries
 								</NavLink>
 							</li>
-							<li>
+							<li className="px-4 py-2">
 								<NavLink to="/page=movies" onClick={handleStateMenu}>
 									Filmes
 								</NavLink>
 							</li>
-							<li>
-								<NavLink to="/page=animes" onClick={handleStateMenu}>
-									Animes
-								</NavLink>
-							</li>
-							<li>
-								<NavLink to="page=games" onClick={handleStateMenu}>
-									Jogos
-								</NavLink>
-							</li>
+							{user && (
+								<li
+									className=" rounded-sm bg-support01 px-4 py-2 text-white sm:text-2xl"
+									onClick={handleStateMenu}
+								>
+									<NavLink to="/" onClick={logout}>
+										Sair
+									</NavLink>
+								</li>
+							)}
 						</ul>
-						{user && (
-							<div className={styles.account} onClick={handleStateMenu}>
-								<NavLink to="/" onClick={logout}>
-									Sair
-								</NavLink>
-							</div>
-						)}
 					</div>
 				</div>
 			</nav>
