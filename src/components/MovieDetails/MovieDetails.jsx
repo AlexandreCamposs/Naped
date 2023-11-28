@@ -20,7 +20,7 @@ const Modal = ({ data, setOpenModal }) => {
 
 		setDataTrailer(keyMovies);
 	}, [keyMovies]);
-	console.log(data);
+
 	return (
 		<div className="fixed bottom-0 left-0 right-0 top-0 bg-black bg-opacity-50">
 			<div
@@ -49,7 +49,7 @@ const Modal = ({ data, setOpenModal }) => {
 					<div className="mx-8 my-8 flex flex-col justify-start sm:w-2/4">
 						<div>
 							<h1 className="mb-4 text-3xl font-bold">
-								{data ? data.title : data.name}
+								{data && data.title ? data.title : data.name}
 							</h1>
 						</div>
 						<div>
