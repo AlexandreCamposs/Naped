@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
 
-import styles from './Register.module.css';
-
 const RegisterUser = () => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
@@ -19,12 +17,7 @@ const RegisterUser = () => {
 	const navigate = useNavigate();
 	const { user } = useAuthValue();
 
-	const {
-		registerUser,
-		error: newError,
-		loading,
-		clearError,
-	} = useAuthentication();
+	const { registerUser, error: newError, clearError } = useAuthentication();
 
 	const handleSignUp = async (e) => {
 		e.preventDefault();
@@ -91,7 +84,7 @@ const RegisterUser = () => {
 					/>
 				</label>
 				<label className="relative">
-					<AiOutlineMail className="absolute left-2 top-2/4 translate-y-[-85%] bg-transparent  text-support01 " />
+					<AiOutlineMail className="absolute left-2 top-2/4 translate-y-[-85%] bg-transparent text-support01 " />
 					<input
 						className="mb-3 w-full  appearance-none rounded bg-dark20 px-8 py-2 text-gray-700   shadow focus:text-white focus:outline-none "
 						type="text"

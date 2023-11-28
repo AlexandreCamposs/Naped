@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { SearchDataProvider } from './context/SearchDataContext';
 import { useAuthentication } from './hooks/userAuthentication';
 import { onAuthStateChanged } from 'firebase/auth';
 
@@ -10,8 +11,9 @@ import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Series from './pages/Series';
 import Movies from './pages/Movies';
-import MovieDetails from './components/MovieDetails';
 import Footer from './components/Footer';
+import FormSearch from './components/FormSearch/FormSearch';
+import Search from './pages/Search/Search';
 
 function App() {
 	const [user, setUser] = useState(undefined);
@@ -50,7 +52,7 @@ function App() {
 						/>
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<RegisterUser />} />
-						<Route path="/search" element={<Home />} />
+						<Route path="/search" element={<Search />} />
 					</Routes>
 				</BrowserRouter>
 			</div>

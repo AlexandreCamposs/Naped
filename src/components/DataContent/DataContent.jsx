@@ -1,14 +1,9 @@
 import { useState } from 'react';
 import MovieDetails from '../MovieDetails';
-import { useLocation } from 'react-router-dom';
 
 const DataContent = ({ data }) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [movie, setMovie] = useState(null);
-
-	const location = useLocation();
-	const searchParams = location.pathname;
-	const query = searchParams.split('=')[1];
 
 	function handleModal(data) {
 		setMovie(data);
@@ -48,7 +43,6 @@ const DataContent = ({ data }) => {
 			{openModal && (
 				<MovieDetails
 					data={movie}
-					query={query}
 					setOpenModal={() => setOpenModal(!openModal)}
 				/>
 			)}

@@ -4,8 +4,6 @@ import { useSearchMovies } from '../../hooks/userSearchMovies';
 import DataContent from '../../components/DataContent';
 import Pagination from '../../components/Pagination/Pagination';
 
-import { AiOutlineSearch } from 'react-icons/ai';
-
 const Movies = () => {
 	const [data, setData] = useState('');
 	const [loading, setLoading] = useState(false);

@@ -1,48 +1,26 @@
 import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
-import { token } from '../../util/data';
+import { useLinkMovies } from '../../hooks/useLinkMovies';
+
 import { imageCover } from '../../util/data';
-
 import { AiOutlineClose } from 'react-icons/ai';
-import { FaStar } from 'react-icons/fa6';
 
-const Modal = ({ data, setOpenModal, query }) => {
+const Modal = ({ data, setOpenModal }) => {
 	const [dataTrailer, setDataTrailer] = useState('');
 	const [trailer, setTrailer] = useState(false);
+
 	const backgroundImage = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`;
+
 	const player = `www.youtube.com/embed/${dataTrailer}`;
-	console.log(data);
 
-	const fetchMovies = async () => {
-		try {
-			if (query === 'movies') {
-				const res = await fetch(
-					`https://api.themoviedb.org/3/movie/${data.id}/videos?language=pt-BR`,
-					token,
-				);
-
-				const { results } = await res.json();
-
-				setDataTrailer(results[0].key);
-			} else if (query === 'series') {
-				const res = await fetch(
-					`https://api.themoviedb.org/3/tv/${data.id}/videos?include_video_language=pt-BR%2Cen-US%2Cja-JP`,
-					token,
-				);
-
-				const { results } = await res.json();
-
-				setDataTrailer(results[0].key);
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	const { keyMovies, fetchMovies } = useLinkMovies();
 
 	useEffect(() => {
-		fetchMovies();
-	}, []);
+		fetchMovies(data);
 
+		setDataTrailer(keyMovies);
+	}, [keyMovies]);
+	console.log(data);
 	return (
 		<div className="fixed bottom-0 left-0 right-0 top-0 bg-black bg-opacity-50">
 			<div
@@ -71,7 +49,7 @@ const Modal = ({ data, setOpenModal, query }) => {
 					<div className="mx-8 my-8 flex flex-col justify-start sm:w-2/4">
 						<div>
 							<h1 className="mb-4 text-3xl font-bold">
-								{query === 'movies' ? data.title : data.name}
+								{data ? data.title : data.name}
 							</h1>
 						</div>
 						<div>

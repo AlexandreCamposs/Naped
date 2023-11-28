@@ -5,6 +5,7 @@ export const useSearchAll = () => {
 	const [data, setData] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
+	console.log(currentPage);
 
 	const searchInput = async (query) => {
 		if (!query) {
